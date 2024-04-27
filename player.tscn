@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://cd7t0r5wjxfb3"]
+[gd_scene load_steps=114 format=3 uid="uid://cd7t0r5wjxfb3"]
 
 [ext_resource type="Texture2D" uid="uid://bihbaardgy7ki" path="res://assets/sprites/01-King Human/Idle (78x58).png" id="1_ay1l8"]
 [ext_resource type="Script" path="res://player.gd" id="1_iy88g"]
@@ -300,6 +300,9 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_5u6r8")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_gww17")
 blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_y0ycw"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mbimt"]
 animation = &"FallLeft"
@@ -312,6 +315,10 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_mbimt")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_6pjn1")
 blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_grh12"]
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ljgse"]
 animation = &"IdleLeft"
@@ -439,20 +446,69 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_jumping"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tcrmv"]
+advance_mode = 2
+advance_condition = &"is_hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yhiyi"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wp02m"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n0lww"]
+advance_mode = 2
+advance_condition = &"is_hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ofq8r"]
+advance_mode = 2
+advance_condition = &"is_hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fv80w"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f3uui"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ypi4j"]
+advance_mode = 2
+advance_condition = &"is_hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pjk87"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_elscp"]
+advance_mode = 2
+advance_condition = &"is_hit"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_00483"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace1D_jwfr2")
-states/Attack/position = Vector2(505, 570)
+states/Attack/position = Vector2(250, 679)
+states/Die/node = SubResource("AnimationNodeBlendSpace1D_y0ycw")
+states/Die/position = Vector2(411, 865)
 states/Fall/node = SubResource("AnimationNodeBlendSpace1D_fjx6b")
-states/Fall/position = Vector2(660, 334)
+states/Fall/position = Vector2(790, 380)
+states/Hit/node = SubResource("AnimationNodeBlendSpace1D_grh12")
+states/Hit/position = Vector2(587, 679)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_evlrd")
-states/Idle/position = Vector2(341, 100)
+states/Idle/position = Vector2(196, 100)
 states/Jump/node = SubResource("AnimationNodeBlendSpace1D_ctttf")
-states/Jump/position = Vector2(341, 334)
+states/Jump/position = Vector2(36, 380)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_dncqg")
-states/Run/position = Vector2(660, 100)
-states/Start/position = Vector2(181, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0l8wx"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_3jthg"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_2m5t3"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_wq3xp"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_5bkq6"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_bw3wc"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_cd0c1"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_3rnti"), "Fall", "Jump", SubResource("AnimationNodeStateMachineTransition_6y1bd"), "Fall", "Run", SubResource("AnimationNodeStateMachineTransition_xhf37"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_xwlmb"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_0phc0"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_hhtec"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_b7hmm"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0d1jp"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_0krdk"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_8y57s"), "Jump", "Attack", SubResource("AnimationNodeStateMachineTransition_c8upi"), "Fall", "Attack", SubResource("AnimationNodeStateMachineTransition_x7qqm"), "Attack", "Fall", SubResource("AnimationNodeStateMachineTransition_glajh"), "Attack", "Jump", SubResource("AnimationNodeStateMachineTransition_st4nk")]
-graph_offset = Vector2(-299, -135)
+states/Run/position = Vector2(587, 100)
+states/Start/position = Vector2(-61, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0l8wx"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_3jthg"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_2m5t3"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_wq3xp"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_5bkq6"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_bw3wc"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_cd0c1"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_3rnti"), "Fall", "Jump", SubResource("AnimationNodeStateMachineTransition_6y1bd"), "Fall", "Run", SubResource("AnimationNodeStateMachineTransition_xhf37"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_xwlmb"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_0phc0"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_hhtec"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_b7hmm"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0d1jp"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_0krdk"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_8y57s"), "Jump", "Attack", SubResource("AnimationNodeStateMachineTransition_c8upi"), "Fall", "Attack", SubResource("AnimationNodeStateMachineTransition_x7qqm"), "Attack", "Fall", SubResource("AnimationNodeStateMachineTransition_glajh"), "Attack", "Jump", SubResource("AnimationNodeStateMachineTransition_st4nk"), "Attack", "Hit", SubResource("AnimationNodeStateMachineTransition_tcrmv"), "Hit", "Attack", SubResource("AnimationNodeStateMachineTransition_yhiyi"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_wp02m"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_n0lww"), "Jump", "Hit", SubResource("AnimationNodeStateMachineTransition_ofq8r"), "Hit", "Jump", SubResource("AnimationNodeStateMachineTransition_fv80w"), "Hit", "Fall", SubResource("AnimationNodeStateMachineTransition_f3uui"), "Fall", "Hit", SubResource("AnimationNodeStateMachineTransition_ypi4j"), "Hit", "Run", SubResource("AnimationNodeStateMachineTransition_pjk87"), "Run", "Hit", SubResource("AnimationNodeStateMachineTransition_elscp")]
+graph_offset = Vector2(-673, 59)
 
 [sub_resource type="Animation" id="Animation_1a460"]
 resource_name = "AttackLeft"
@@ -1159,8 +1215,7 @@ height = 26.0
 radius = 17.0
 height = 48.0
 
-[node name="Player" type="CharacterBody2D"]
-collision_layer = 0
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 velocity = Vector2(0, 7.8174e+06)
 script = ExtResource("1_iy88g")
 
@@ -1187,7 +1242,7 @@ script = ExtResource("4_uc1ph")
 speed = 300.0
 jump = &"jump"
 coyote_time = 0.1
-falling_y_velocity = 250.0
+falling_y_velocity = 270.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -1202,7 +1257,6 @@ metadata/_edit_lock_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.2
-shadow_enabled = true
 texture = SubResource("GradientTexture2D_l5fb7")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -1211,11 +1265,14 @@ tree_root = SubResource("AnimationNodeStateMachine_00483")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_attacking = false
 parameters/conditions/is_falling = false
+parameters/conditions/is_hit = false
 parameters/conditions/is_idle = false
 parameters/conditions/is_jumping = false
 parameters/conditions/is_moving = false
 parameters/Attack/blend_position = -0.763023
+parameters/Die/blend_position = 0
 parameters/Fall/blend_position = 0.258427
+parameters/Hit/blend_position = -0.242084
 parameters/Idle/blend_position = 1.0
 parameters/Jump/blend_position = -0.942799
 parameters/Run/blend_position = -1.0
@@ -1242,3 +1299,5 @@ shape = SubResource("CapsuleShape2D_mvu6q")
 disabled = true
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="damaged" from="HurtBox" to="." method="_on_hurt_box_damaged"]
+[connection signal="ded" from="HurtBox" to="." method="_on_hurt_box_ded"]

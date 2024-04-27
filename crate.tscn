@@ -36,4 +36,7 @@ MAX_HEALTH = 2.0
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_xg88x")
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(-11, -8, 10, -8, 10, 8, -11, 8)
+
 [connection signal="ded" from="HurtBox" to="." method="_on_hurt_box_ded"]

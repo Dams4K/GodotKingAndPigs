@@ -7,7 +7,7 @@ extends RigidBody2D
 func _ready() -> void:
 	randomize()
 	
-	var frame = randi_range(0, 4)
+	var frame = randi_range(0, 3)
 	sprite_2d.frame = frame
 	
 	linear_velocity.y = randf_range(0.4, 1) * SPEED

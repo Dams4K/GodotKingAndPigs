@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -49,3 +50,11 @@ func update_blend_position():
 func _on_attack_timer_timeout() -> void:
 	is_attacking = false
 	collision_shape_2d.disabled = true #Just to be sure
+
+
+func _on_hurt_box_ded() -> void:
+	print_rich("[color=#ff0000]Player has died[/color]")
+
+
+func _on_hurt_box_damaged() -> void:
+	print_rich("[color=#ffff00]The player has been damaged[/color]")
