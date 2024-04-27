@@ -10,10 +10,11 @@ extends PlayerController
 
 var direction := 0.0
 var is_moving := false
+var can_move := true
 
 func _physics_process(delta: float) -> void:
 	direction = Input.get_axis(left, right)
-	if direction:
+	if direction and can_move:
 		is_moving = true
 		player.velocity.x = move_toward(player.velocity.x, direction * MAX_SPEED, delta * ACCELERATION)
 	else:

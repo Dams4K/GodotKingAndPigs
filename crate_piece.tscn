@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwdnrylpigsam"]
+
+[ext_resource type="Texture2D" uid="uid://cmgqxq8mdpbqq" path="res://assets/sprites/08-Box/Pieces.png" id="1_0yh5k"]
+[ext_resource type="Script" path="res://crate_piece.gd" id="1_akjnl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w75pt"]
+radius = 5.09902
+
+[node name="CratePiece" type="RigidBody2D"]
+collision_layer = 0
+script = ExtResource("1_akjnl")
+SPEED = 250
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0yh5k")
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w75pt")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

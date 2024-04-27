@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3ogrv5jt5ea2"]
+
+[ext_resource type="Material" uid="uid://bix7goibb4ls1" path="res://assets/particles/crate_destroy_particles.tres" id="1_8320a"]
+[ext_resource type="Texture2D" uid="uid://c304bi0lodcbh" path="res://assets/sprites/08-Box/Box Pieces 1.png" id="1_ns6pt"]
+
+[node name="CrateDestroyParticles" type="GPUParticles2D"]
+process_material = ExtResource("1_8320a")
+texture = ExtResource("1_ns6pt")
+lifetime = 5.0
+explosiveness = 1.0
+randomness = 0.42
