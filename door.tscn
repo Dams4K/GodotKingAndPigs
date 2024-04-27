@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwxu6vqwj146r"]
+
+[ext_resource type="Texture2D" uid="uid://bvj3f2gislh2g" path="res://assets/sprites/11-Door/Idle.png" id="1_cieal"]
+
+[node name="Door" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cieal")
+offset = Vector2(16, 20)
