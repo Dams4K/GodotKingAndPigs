@@ -16,6 +16,7 @@ var direction: float = 1
 var can_attack := false
 
 @export var is_attacking := false
+@export var is_hit := false
 var is_idle := true
 var is_moving := false
 
@@ -35,17 +36,16 @@ func _physics_process(delta: float) -> void:
 	
 	if player:
 		if player.global_position.x < global_position.x:
-			print_debug("%s attacks the left" % name)
 			direction = -1
 		else:
-			print_debug("%s attacks the right" % name)
 			direction = 1
 	
 		update_blend_position()
 	
-	animation_tree["parameters/conditions/is_idle"] = not is_moving and not is_attacking
-	animation_tree["parameters/conditions/is_moving"] = is_moving and not is_attacking
-	animation_tree["parameters/conditions/is_attacking"] = is_attacking
+	animation_tree["parameters/conditions/is_idle"] = not is_moving and not is_attacking and not is_hit
+	animation_tree["parameters/conditions/is_moving"] = is_moving and not is_attacking and not is_hit
+	animation_tree["parameters/conditions/is_attacking"] = is_attacking and not is_hit
+	animation_tree["parameters/conditions/is_hit"] = is_hit
 	
 	
 	if player:
@@ -78,6 +78,7 @@ func update_blend_position():
 	animation_tree.set("parameters/Idle/blend_position", direction)
 	animation_tree.set("parameters/Attack/blend_position", direction)
 	animation_tree.set("parameters/Run/blend_position", direction)
+	animation_tree.set("parameters/Hit/blend_position", direction)
 
 func _on_view_area_body_entered(body: Node2D) -> void:
 	if not body is Player:
@@ -102,8 +103,6 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 	if not body is Player:
 		return
 	
-	print_debug("Player is in range of %s!" % name)
-	
 	can_attack = true
 
 
@@ -113,11 +112,13 @@ func _on_attack_range_body_exited(body: Node2D) -> void:
 	
 	player = body
 	
-	print_debug("Player is out of range of %s!" % name)
-	
 	can_attack = false
 
 
 func _on_hurt_box_ded() -> void:
 	print_debug("%s is ded" % name)
 	queue_free()
+
+
+func _on_hurt_box_damaged() -> void:
+	is_hit = true
