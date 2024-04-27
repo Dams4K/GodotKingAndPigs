@@ -17,6 +17,7 @@ var can_attack := false
 
 @export var is_attacking := false
 var is_idle := true
+var is_moving := false
 
 var follow_player := false
 
@@ -30,17 +31,20 @@ func _physics_process(delta: float) -> void:
 	
 	if can_attack and not is_attacking:
 		# Make the pig attack the player
+		is_attacking = true
+	
+	if player:
 		if player.global_position.x < global_position.x:
 			print_debug("%s attacks the left" % name)
 			direction = -1
 		else:
 			print_debug("%s attacks the right" % name)
 			direction = 1
-		is_attacking = true
 	
-	update_blend_position()
+		update_blend_position()
 	
-	#animation_tree["parameters/conditions/is_idle"] = is_idle and not is_attacking
+	animation_tree["parameters/conditions/is_idle"] = not is_moving and not is_attacking
+	animation_tree["parameters/conditions/is_moving"] = is_moving and not is_attacking
 	animation_tree["parameters/conditions/is_attacking"] = is_attacking
 	
 	
@@ -61,6 +65,8 @@ func _physics_process(delta: float) -> void:
 		var d = navigation_agent_2d.get_next_path_position() - global_position
 		d = d.normalized()
 		
+		is_moving = d.x != 0
+		
 		if is_on_floor() and player.global_position.y+32 < global_position.y:
 			velocity.y = -300 # JUMP
 		else:
@@ -71,6 +77,7 @@ func _physics_process(delta: float) -> void:
 func update_blend_position():
 	animation_tree.set("parameters/Idle/blend_position", direction)
 	animation_tree.set("parameters/Attack/blend_position", direction)
+	animation_tree.set("parameters/Run/blend_position", direction)
 
 func _on_view_area_body_entered(body: Node2D) -> void:
 	if not body is Player:

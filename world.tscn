@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://cq0magw68jlo"]
+[gd_scene load_steps=84 format=3 uid="uid://cq0magw68jlo"]
 
 [ext_resource type="PackedScene" uid="uid://gvo4s7c4trnv" path="res://window.tscn" id="1_chala"]
 [ext_resource type="Texture2D" uid="uid://owv3i4ev5a2p" path="res://assets/sprites/14-TileSets/Terrain (32x32).png" id="1_uld30"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cd7t0r5wjxfb3" path="res://player.tscn" id="6_c3pw1"]
 [ext_resource type="PackedScene" uid="uid://rx8weuhchkbu" path="res://bomb.tscn" id="6_u5lfk"]
 [ext_resource type="PackedScene" uid="uid://pot534ift81" path="res://pig.tscn" id="9_15efg"]
+[ext_resource type="Script" path="res://TilePathFinder.gd" id="10_1e5cs"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="11_nu25x"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="11_yv323"]
 
 [sub_resource type="Environment" id="Environment_6tdxh"]
 background_mode = 3
@@ -1846,6 +1849,12 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-247, -95, -246, 384, -6, 382, -7, -93)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
+[sub_resource type="Curve2D" id="Curve2D_qtosh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 64, -74, 0, 0, 0, 0, 64, 384)
+}
+point_count = 2
+
 [node name="World" type="Node2D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -1860,7 +1869,7 @@ format = 2
 layer_0/name = "Primary"
 layer_0/tile_data = PackedInt32Array(131073, 131073, 2, 65537, 131073, 2, 1, 131073, 2, -65535, 131073, 2, -131071, 131073, 2, 131072, 131073, 2, 65536, 131073, 2, 0, 131073, 2, -65536, 131073, 2, -131072, 131073, 2, 196607, 65537, 2, 131071, 65537, 2, 65535, 65537, 2, -1, 524289, 1, -65537, 131073, 2, 196606, 327681, 8, 131070, 720897, 10, 65534, 196609, 7, -2, 65537, 3, -65538, 65537, 2, 196605, 196609, 1, 131069, 131073, 9, 65533, 458753, 8, -3, 196609, 8, -65539, 196609, 7, 196609, 131073, 2, -196607, 131073, 2, -262143, 131073, 2, 196608, 131073, 2, -196608, 131073, 2, -262144, 131073, 2, 262143, 65537, 2, -131073, 131073, 2, -196609, 131073, 2, 262142, 327681, 8, -131074, 524289, 1, -196610, 131073, 2, 262141, 196609, 2, -131075, 131073, 3, -196611, 131073, 2, 262140, 524289, 1, 196604, 131073, 1, 131068, 131073, 9, 65532, 131073, 8, -4, 131073, 8, -65540, 131073, 7, -131076, 131073, 3, -196612, 131073, 2, 262139, 131073, 3, 196603, 131073, 1, 131067, 524289, 11, 65531, 65537, 8, -5, 524289, 7, -65541, 131073, 7, -131077, 131073, 3, -196613, 131073, 2, 262138, 131073, 3, 196602, 131073, 1, 131066, 65537, 11, 65530, 196609, 5, -6, 131073, 9, -65542, 131073, 7, -131078, 131073, 3, -196614, 131073, 2, 262137, 131073, 3, 196601, 458753, 2, 131065, 196609, 2, 65529, 458753, 4, -7, 65537, 9, -65543, 65537, 7, -131079, 131073, 3, -196615, 131073, 2, 262136, 458753, 1, 196600, 131073, 2, 131064, 131073, 2, 65528, 458753, 2, -8, 196609, 2, -65544, 196609, 2, -131080, 458753, 1, -196616, 131073, 2, 262145, 131073, 2, 262144, 131073, 2, 327679, 65537, 2, 327678, 327681, 8, 327677, 196609, 3, 327676, 65537, 3, 327675, 196609, 7, 327674, 131073, 7, 327673, 65537, 7, 327672, 196609, 2, 393209, 65537, 8, 393208, 196609, 2, 393210, 131073, 8, 393211, 458753, 8, 393212, 131073, 7, 393213, 131073, 7, 393215, 65537, 2, 393214, 720897, 11, 327681, 131073, 2, 327680, 131073, 2, 393217, 131073, 2, 393216, 131073, 2, 458751, 65537, 2, 458750, 196609, 9, 458749, 131073, 9, 458748, 458753, 7, 458747, 524289, 7, 458746, 131073, 9, 458745, 65537, 9, 458744, 196609, 2, 720897, 131073, 2, 655361, 131073, 2, 589825, 131073, 2, 524289, 131073, 2, 458753, 131073, 2, 720896, 131073, 2, 655360, 131073, 2, 589824, 131073, 2, 524288, 131073, 2, 458752, 131073, 2, 786431, 131073, 2, 720895, 131073, 2, 655359, 131073, 2, 589823, 131073, 2, 524287, 524289, 2, 786430, 524289, 2, 720894, 65537, 2, 655358, 65537, 2, 589822, 65537, 2, 524286, 524289, 4, 786429, 131073, 1, 720893, 196609, 9, 655357, 196609, 8, 589821, 196609, 7, 524285, 65537, 5, 786428, 131073, 1, 720892, 131073, 9, 655356, 131073, 8, 589820, 458753, 8, 524284, 196609, 8, 786427, 131073, 1, 720891, 131073, 9, 655355, 524289, 8, 589819, 65537, 8, 524283, 65537, 8, 786426, 131073, 1, 655354, 65537, 7, 589818, 196609, 3, 524282, 196609, 1, 786425, 458753, 2, 720889, 196609, 2, 655353, 196609, 2, 589817, 458753, 1, 524281, 131073, 1, 786424, 131073, 2, 720888, 131073, 2, 655352, 131073, 2, 589816, 131073, 2, 524280, 458753, 2, 720890, 65537, 9)
 layer_1/name = "Secondary"
-layer_1/tile_data = PackedInt32Array(-65540, 0, 65536, 327675, 65540, 1, 393211, 65540, 3, 589821, 65538, 1, 655357, 65538, 4, 131068, 327682, 1, 524284, 131074, 2, 589819, 262146, 1, 655356, 327682, 1, 655354, 5, 65536, -65543, 5, 65536, 327673, 0, 65536, 65531, 327684, 2, 65534, 65540, 1, 131070, 65540, 2, 196606, 65540, 3)
+layer_1/tile_data = PackedInt32Array(-65540, 0, 65536, 327675, 65540, 1, 393211, 65540, 3, 131068, 327682, 1, 524284, 131074, 2, 589819, 262146, 1, 655356, 327682, 1, 655354, 5, 65536, -65543, 5, 65536, 327673, 0, 65536, 65531, 327684, 2, 65534, 65540, 1, 131070, 65540, 2, 196606, 65540, 3, 589821, 65540, 1, 655357, 65540, 4)
 layer_2/name = "Interactables"
 layer_2/tile_data = PackedInt32Array()
 
@@ -1905,6 +1914,10 @@ position = Vector2(-179, -22)
 velocity = Vector2(0, 1.17774e+07)
 metadata/_edit_lock_ = true
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+update_rotation = false
+update_scale = false
+
 [node name="Pigs" type="Node2D" parent="."]
 
 [node name="Pig" parent="Pigs" instance=ExtResource("9_15efg")]
@@ -1914,4 +1927,51 @@ position = Vector2(-112, 32)
 position = Vector2(-98, 352)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_nnb7h")
+
+[node name="TilePathFinder" type="Node2D" parent="."]
+script = ExtResource("10_1e5cs")
+tilemap_path = NodePath("../TileMap")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-196, -9)
+curve = SubResource("Curve2D_qtosh")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-132, -22)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("11_nu25x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+z_index = -10
+texture_repeat = 2
+scale = Vector2(20, 10)
+texture = ExtResource("1_uld30")
+region_enabled = true
+region_rect = Rect2(64, 64, 32, 32)
+metadata/_edit_lock_ = true
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(-132, -22)
+script = ExtResource("11_yv323")
+priority_override = false
+priority = 0
+zoom = Vector2(1, 1)
+follow_mode = 4
+follow_target = NodePath("../Player")
+follow_path = NodePath("../Path2D")
+follow_parameters/damping = false
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = true
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://cd7t0r5wjxfb3"]
+[gd_scene load_steps=113 format=3 uid="uid://cd7t0r5wjxfb3"]
 
 [ext_resource type="Texture2D" uid="uid://bihbaardgy7ki" path="res://assets/sprites/01-King Human/Idle (78x58).png" id="1_ay1l8"]
 [ext_resource type="Script" path="res://player.gd" id="1_iy88g"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://esadpjjayxmi" path="res://assets/sprites/01-King Human/Ground (78x58).png" id="4_ud4py"]
 [ext_resource type="Script" path="res://components/side_movements.gd" id="5_885af"]
 [ext_resource type="Texture2D" uid="uid://cqmepo6mqihyx" path="res://assets/sprites/01-King Human/Hit (78x58).png" id="5_ul0hk"]
-[ext_resource type="Texture2D" uid="uid://owv3i4ev5a2p" path="res://assets/sprites/14-TileSets/Terrain (32x32).png" id="7_1xfy7"]
 [ext_resource type="Texture2D" uid="uid://bmop7j2tdwd11" path="res://assets/sprites/01-King Human/Jump (78x58).png" id="8_s4nmc"]
 [ext_resource type="PackedScene" uid="uid://b8rbmsmwg5jmb" path="res://components/hurt_box.tscn" id="14_fqxg5"]
 [ext_resource type="PackedScene" uid="uid://cduuwb8l1mye5" path="res://components/hit_box.tscn" id="15_n45gf"]
@@ -508,7 +507,7 @@ states/Run/node = SubResource("AnimationNodeBlendSpace1D_dncqg")
 states/Run/position = Vector2(587, 100)
 states/Start/position = Vector2(-61, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0l8wx"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_3jthg"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_2m5t3"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_wq3xp"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_5bkq6"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_bw3wc"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_cd0c1"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_3rnti"), "Fall", "Jump", SubResource("AnimationNodeStateMachineTransition_6y1bd"), "Fall", "Run", SubResource("AnimationNodeStateMachineTransition_xhf37"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_xwlmb"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_0phc0"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_hhtec"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_b7hmm"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0d1jp"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_0krdk"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_8y57s"), "Jump", "Attack", SubResource("AnimationNodeStateMachineTransition_c8upi"), "Fall", "Attack", SubResource("AnimationNodeStateMachineTransition_x7qqm"), "Attack", "Fall", SubResource("AnimationNodeStateMachineTransition_glajh"), "Attack", "Jump", SubResource("AnimationNodeStateMachineTransition_st4nk"), "Attack", "Hit", SubResource("AnimationNodeStateMachineTransition_tcrmv"), "Hit", "Attack", SubResource("AnimationNodeStateMachineTransition_yhiyi"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_wp02m"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_n0lww"), "Jump", "Hit", SubResource("AnimationNodeStateMachineTransition_ofq8r"), "Hit", "Jump", SubResource("AnimationNodeStateMachineTransition_fv80w"), "Hit", "Fall", SubResource("AnimationNodeStateMachineTransition_f3uui"), "Fall", "Hit", SubResource("AnimationNodeStateMachineTransition_ypi4j"), "Hit", "Run", SubResource("AnimationNodeStateMachineTransition_pjk87"), "Run", "Hit", SubResource("AnimationNodeStateMachineTransition_elscp")]
-graph_offset = Vector2(-673, 59)
+graph_offset = Vector2(-436, 156)
 
 [sub_resource type="Animation" id="Animation_1a460"]
 resource_name = "AttackLeft"
@@ -1244,23 +1243,11 @@ jump = &"jump"
 coyote_time = 0.1
 falling_y_velocity = 270.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
-z_index = -10
-texture_repeat = 2
-scale = Vector2(20, 10)
-texture = ExtResource("7_1xfy7")
-region_enabled = true
-region_rect = Rect2(64, 64, 32, 32)
-metadata/_edit_lock_ = true
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.2
 texture = SubResource("GradientTexture2D_l5fb7")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 tree_root = SubResource("AnimationNodeStateMachine_00483")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_attacking = false
