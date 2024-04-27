@@ -1767,4 +1767,4 @@ texture = SubResource("GradientTexture2D_xtd3g")
 
 [node name="Player" parent="." instance=ExtResource("6_c3pw1")]
 position = Vector2(-179, -22)
-velocity = Vector2(0, 1.17304e+07)
+velocity = Vector2(0, 1.17774e+07)

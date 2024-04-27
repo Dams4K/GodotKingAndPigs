@@ -993,7 +993,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-velocity = Vector2(0, 7.69184e+06)
+velocity = Vector2(0, 7.8174e+06)
 script = ExtResource("1_iy88g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

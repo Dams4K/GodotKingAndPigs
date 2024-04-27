@@ -7,11 +7,9 @@ extends CharacterBody2D
 @onready var jump: Jump = $Jump
 
 func _ready():
+	velocity = Vector2.ZERO
 	animation_tree.active = true
-	
-	set_physics_process(false)
-	await get_tree().create_timer(0.5).timeout
-	set_physics_process(true)
+
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -23,7 +21,6 @@ func _physics_process(delta: float) -> void:
 	animation_tree["parameters/conditions/is_moving"] = is_moving and not is_jumping and not is_falling
 	animation_tree["parameters/conditions/is_jumping"] = is_jumping
 	animation_tree["parameters/conditions/is_falling"] = is_falling
-	#print(is_jumping, is_falling)
 	
 	if side_movements.is_moving:
 		animation_tree.set("parameters/Idle/blend_position", side_movements.direction)
